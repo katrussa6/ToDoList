@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  background-color: rgb(69, 198, 221);
+}
+.headInp {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin: 30px;
+  padding: 30px;
+  justify-items: center;
+}
+.bodyInp {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin: 30px;
+  padding: 30px;
+  justify-items: center;
+  background-color: aliceblue;
+}
+.cheked {
+  margin: 30px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+
+}
+#need {
+  padding: 20px;
+  margin: 10px;
+  background-color: rgb(212, 216, 219);
+  border-radius: 10px;
+  justify-items: center;
+}
+
+.styleadd {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  
+}
