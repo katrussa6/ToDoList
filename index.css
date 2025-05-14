@@ -1,45 +1,61 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  max-width: 100%;
-  background-color: rgb(69, 198, 221);
+body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: rgb(132, 189, 199);
 }
+
 .headInp {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  margin: 30px;
-  padding: 30px;
-  justify-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .bodyInp {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  margin: 30px;
-  padding: 30px;
-  justify-items: center;
-  background-color: aliceblue;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .cheked {
-  margin: 30px;
-  padding: 30px;
-  display: flex;
-  justify-content: space-between;
-
+ display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(50, 46, 132);
+  border-radius: 10px;
+  background-color: rgb(112, 163, 197);
+  padding: 15px;
+  width: 200px;
 }
 #need {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
   padding: 20px;
-  margin: 10px;
-  background-color: rgb(212, 216, 219);
   border-radius: 10px;
-  justify-items: center;
 }
-
+.needs{
+  margin: 10px;
+  padding: 10px;
+  background-color: aliceblue;
+  border: 2px solid rgb(50, 46, 132);
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.needEdit{
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid rgb(50, 46, 132);
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+  
 .styleadd {
   margin: 10px;
   padding: 10px;
+  border: 2px solid rgb(50, 46, 132);
   border-radius: 10px;
-  
+  padding: 5px 10px;
+  cursor: pointer;
 }
