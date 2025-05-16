@@ -1,46 +1,65 @@
 const bodyInp = document.querySelector(".bodyInp");
 const add = document.getElementById("add");
-const need = document.getElementById('need');
+const need = document.getElementById("need");
 
-
-
-const needArr = [
+let needArr = [
   {
-    id:0,
+    id: 0,
     checkbox: true,
     text: "Прочитать книгу",
     buttonPen: "&#10000",
     button: "x",
   },
   {
-    id:1,
-    checkbox: true,
+    id: 1,
+    checkbox: false,
     text: "Купить продукты",
     buttonPen: "&#10000",
     button: "x",
   },
   {
-    id:2,
-    checkbox: true,
+    id: 2,
+    checkbox: false,
     text: "Позвонить родителям",
     buttonPen: "&#10000",
     button: "x",
   },
   {
-    id:3,
-    checkbox: true,
+    id: 3,
+    checkbox: false,
     text: "Выйти на пробежку",
     buttonPen: "&#10000",
     button: "x",
   },
   {
-    id:4,
-    checkbox: true,
+    id: 4,
+    checkbox: false,
     text: "Приготовить ужин",
     buttonPen: "&#10000",
     button: "x",
   },
 ];
+
+// Загружаем из localStorage, если есть
+const saved = localStorage.getItem("toDo");
+if (saved) {
+  try {
+    needArr = JSON.parse(saved);
+  } catch (e) {
+    console.error("Ошибка парсинга localStorage", e);
+  }
+}
+
+// Функция для сохранения в localStorage
+function saveToLocal() {
+  localStorage.setItem("toDo", JSON.stringify(needArr));
+}
+
+//функция для сохранения чекбокса
+function toggleCheckbox(index) {
+  needArr[index].checkbox = !needArr[index].checkbox;
+  saveToLocal();
+}
 
 document.getElementById("add").addEventListener("click", addPush);
 function addPush() {
@@ -57,44 +76,21 @@ function addPush() {
     };
 
     needArr.push(newTask); // добавляем в массив
+    saveToLocal(); // сохраняем
     need.value = ""; // очищаем поле
-    renderTodos(); // перерисовываем список
-  } 
+    renderTodos();
+  }
 }
-
-
 
 function delElement(index) {
   needArr.splice(index, 1);
   renderTodos();
 }
 
-//function editElement(index) {
-//  const inputs = document.querySelectorAll(".needEdit");
-//  const text = document.querySelectorAll(".need");
-//  console.log(inputs,text)
-//if(  inputs[index].style.display === "none"){
-//  inputs[index].style.display = "block";
-//  text[index].style.display = "none";
-//}
-
-//}
-
-//function rewersEditElement(index){
-//  const inputs = document.querySelectorAll(".needEdit");
-//  const text = document.querySelectorAll(".need");
-//  const newValue = inputs[index].value;
-//  needArr[index].text = newValue;
-//  inputs[index].style.display = "none";
-//  text[index].style.display = "block";
-  
-//  renderTodos();
-//}
-
 function editElement(index) {
   const inputs = document.querySelectorAll(".needEdit");
   const text = document.querySelectorAll(".needs");
-  
+
   inputs[index].style.display = "block";
   text[index].style.display = "none";
 
@@ -111,7 +107,8 @@ function rewersEditElement(index) {
   needArr[index].text = newValue;
 
   inputs[index].style.display = "none";
-  
+
+  saveToLocal(); // сохраняем
   renderTodos();
 }
 
@@ -119,17 +116,19 @@ const renderTodos = () => {
   bodyInp.innerHTML = "";
 
   needArr.forEach((element, index) => {
-
     bodyInp.innerHTML += `
 
          <div class="cheked">
          
-          <input type="checkbox" class="styleadd" name="" 
-          ${element.checkbox ? "checked" : ""}>
+          <input type="checkbox" class="styleadd" 
+      ${element.checkbox ? "checked" : ""} 
+      onchange="toggleCheckbox(${index})">
 
           <p class="needs" onclick="editElement(${index})">${element.text}</p>
 
-          <input class="needEdit" type="text" style="display: none;" value="${element.text}"/>
+          <input class="needEdit" type="text" style="display: none;" value="${
+            element.text
+          }"/>
 
           <button class="styleadd" onclick="editElement(${index})">
           ${element.buttonPen}</button> 
@@ -139,13 +138,9 @@ const renderTodos = () => {
 
       </div>
                  `;
-        console.log('я отрисовал первый елемнт',element)
 
-       
-                
+    console.log("я отрисовал первый елемнт", element);
   });
 };
 
 renderTodos();
-
-
